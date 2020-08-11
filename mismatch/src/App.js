@@ -7,7 +7,7 @@ import Auth from "./components/Auth";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
 // import Fight from "./components/Fight";
-// import Chat from "./components/Chat";
+import Chat from "./components/Chat";
 
 class App extends Component {
   state = {
@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App flex-center">
         <BrowserRouter>
           <Header />
           <Switch>
@@ -40,11 +40,11 @@ class App extends Component {
                 <Dashboard />
               )}
             />
-            {/* <Route
+            <Route
               exact path="/chat/" render={() => (
                 <Chat />
               )}
-            /> */}
+            />
           </Switch>
           <Footer />
         </BrowserRouter>
