@@ -6,8 +6,6 @@ import Footer from "./components/Footer";
 import Auth from "./components/Auth";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
-// import Carouselle from "./components/Carouselle";
-// import Card from "./components/Card";
 // import Fight from "./components/Fight";
 // import Chat from "./components/Chat";
 

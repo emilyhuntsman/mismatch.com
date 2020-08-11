@@ -86,3 +86,40 @@
 #left-space {
   padding-left: 42px;
 }
+
+.card-div {
+  padding-top: 20px;
+  flex-shrink: 0;
+  height: 300px;
+  width: 300px;
+  border: solid black 1px;
+}
+
+.card-div h4 {
+  margin-bottom: 30px;
+}
+
+.card-buttons {
+  margin-top: 20px;
+}
+
+.card-buttons button {
+  margin: 7px;
+  padding: 0px 8px 0px 8px;
+}
+
+#skip {
+  font-size: 80%;
+  display: inline;
+}
+
+.next {
+  margin-top: 20px;
+  background-color: inherit;
+  border: none;
+}
+
+.card-container {
+  display: flex;
+  overflow-x: auto;
+}
