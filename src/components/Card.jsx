@@ -4,10 +4,10 @@ export default class Card extends Component {
     render() {
         return (
         <div className="card-div">
-            <h4>Would you rather fight...</h4>
-            <p>A. One horse-sized duck</p>
+            <h4>{this.props.question.q}</h4>
+        <p>A. {this.props.question.a}</p>
             <p>or</p>
-            <p>B. One hundred duck-sized horses</p>
+        <p>B. {this.props.question.b}</p>
             <div className="card-buttons">
                 <button>A</button>
                 <button>B</button>
