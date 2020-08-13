@@ -6,19 +6,27 @@ import Footer from "./components/Footer";
 import Auth from "./components/Auth";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
-// import Fight from "./components/Fight";
 import Chat from "./components/Chat";
 
 class App extends Component {
   state = {
-    auth: false,
-    user: null,
-    username: '',
-    password: '',
-    users: [],
-    currentPage: "/",
-    baseURL: ""
+    token: "",
+    username: "",
   };
+
+  saveLogin = (username, token) => {
+    this.setState({
+      token: token,
+      username: username
+    })
+  }
+
+  resetLogin = () => {
+    this.setState({
+      token: "",
+      username: ""
+    })
+  }
 
   render() {
     return (
@@ -27,7 +35,7 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" render={() => (
-              <Auth />
+              <Auth saveLogin={(username,token) => this.saveLogin(username,token)}/>
             )}
             />
             <Route
@@ -46,7 +54,7 @@ class App extends Component {
               )}
             />
           </Switch>
-          <Footer />
+          <Footer username={this.state.username} resetLogin={this.resetLogin}/>
         </BrowserRouter>
       </div>
     );

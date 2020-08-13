@@ -11,12 +11,12 @@ export default class Dashboard extends Component {
             {q: "Would you rather be allergic to", a: "Dairy", b: "Gluten"},
             {q: "Would you rather be", a: "An average person in the present", b: "A king of a country 2500 years ago"},
         ],
-        searchURL: "http://localhost:8000/cards/",
+        cardURL: "http://localhost:8000/cards/",
         cards: []
     }
 
     getCards = () => {
-        fetch(this.state.searchURL)
+        fetch(this.state.cardURL)
         .then(response => {
             return response.json()
         }).then(json => this.setState({

@@ -5,6 +5,9 @@ export default class Auth extends Component {
     state = {
         username: "",
         password: "",
+        loginURL: "http://localhost:8000/user/login/",
+        signUpURL: "http://localhost:8000/user/signup/",
+        token: "",
         goHome: false,
     }
 
@@ -12,26 +15,55 @@ export default class Auth extends Component {
         this.setState({ [event.target.id]: event.target.value });
     };
 
-    // handleSubmit = (event) => {
-    //     this.props.handleSubmit(event, this.state.username, this.state.password);
-    //     this.setState({
-    //         username: "",
-    //         password: "",
-    //         goHome: true,
-    //     });
-    // };
+    login = () => {
+        fetch(this.state.loginURL, {
+            method: "POST",
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            if (res.status !== 401) {
+                this.props.saveLogin(this.state.username,this.state.token);
+                return res.json()
+            }
+            throw new Error("invalid login info");
+        })
+        .then((responsejson) => { 
+            this.setState({
+            token: responsejson.token,
+            username: "",
+            password: "", })
+        })
+        .catch((error) => console.error({ Error: error }));
+    }
+
+    signUp = () => {
+        fetch(this.state.signUpURL, {
+            method: "POST",
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(() => {
+            this.login();
+        })
+        .catch((error) => console.error({ Error: error }));
+    }
 
     doRedirect = () => {
-        if (this.state.goHome) {
-        return <Redirect to="/"/>
+        if (this.state.token !== "") {
+        return <Redirect to="/dash"/>
         }
     }
-
-    testing = () => {
-        this.setState({ goHome: true }); 
-    }
-
-
 
     render() {
         return (
@@ -62,8 +94,8 @@ export default class Auth extends Component {
                 <br /><br />
                 </form>
                 <div className="button-div">
-                    <button onClick={() => this.testing()}>log in</button>
-                    <button onClick={() => this.testing()}>sign up</button>
+                    <button onClick={() => this.login()}>log in</button>
+                    <button onClick={() => this.signUp()}>sign up</button>
                 </div>
             </div>
         </div>
