@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 
 export default class Card extends Component {
+    
+    state = {}
+
+    test = () => {
+        this.props.handleNext();
+        this.setState({})
+    }
     render() {
         return (
         <div className="card-div">
@@ -12,7 +19,7 @@ export default class Card extends Component {
                 <button>A</button>
                 <button>B</button>
             </div>
-            <button className="next"><p id="skip">skip question  </p>&#8250;</button>
+            <button className="next"><p id="skip" onClick={() => this.test()}>skip question  </p>&#8250;</button>
         </div>
         );
     }

@@ -94,7 +94,7 @@
   width: 300px;
   border: solid black 1px;
   background-color: white;
-  box-shadow: 0px 5px 10px darkgray;
+  box-shadow: 0px 5px 20px darkgray;
 }
 
 .card-div h4 {
@@ -121,57 +121,97 @@
   border: none;
 }
 
-#card-carousel {
-  padding:0;
-  list-style: none;
+.card-container {
   position: relative;
+  width: 80%;
+  height: 700px;
 }
 
-#card-carousel li {
+#card-container div {
   width: 18%;
   height: 100%;
   display: inline-block;
   background-color: white;
 }
 
-#c1 .card-div {
-  transform: scale(.9) translate3d(120%, -30%, 0);
+[id='1'] .card-div {
+  transform: scale(.9) translate3d(120%, -45%, 0);
+  transition: transform 1s; 
+  position: absolute;
 }
 
-#c1 {
+[id='1'] {
   z-index: -1;
 }
 
-#c2 .card-div {
-  transform: scale(.95) translate3d(45%, -10%, 0);
+[id='2'] .card-div {
+  transform: scale(.95) translate3d(65%, -15%, 0);
+  transition: transform 1s;
+  position: absolute;
 }
 
-#c2 {
+[id='2'] {
   z-index: 0;
 }
 
-#c3 .card-div {
-  transform: scale(1) translate3d(0, 10%, 0);
+[id='3'] .card-div {
+  transform: scale(1) translate3d(0%, 10%, 0);
+  transition: transform 1s;
+  position: absolute;
 }
 
-#c3 {
+[id='3'] {
   z-index: 1;
 }
 
-#c4 .card-div {
-  transform: scale(.95) translate3d(-45%, -10%, 0);
+[id='4'] .card-div {
+  transform: scale(.95) translate3d(-65%, -15%, 0);
+  transition: transform 1s;
+  position: absolute;
 }
 
-#c4 {
+[id='4'] {
   z-index: 0;
 }
 
-#c5 .card-div {
-  transform: scale(.9) translate3d(-120%, -30%, 0);
+[id='5'] .card-div {
+  transform: scale(.9) translate3d(-120%, -45%, 0);
+  transition: transform 1s;
+  position: absolute;
 }
 
-#c5 { 
+[id='5'] { 
   z-index: -1;
+}
+
+[id='6'] .card-div {
+  transform: scale(.8) translate3d(-70%, -95%, 0);
+  transition: transform 1s;
+  position: absolute;
+}
+
+[id='6'] { 
+  z-index: -2;
+}
+
+[id='7'] .card-div {
+  transform: scale(.8) translate3d(0%, -115%, 0);
+  transition: transform 1s;
+  position: absolute;
+}
+
+[id='7'] { 
+  z-index: -3;
+}
+
+[id='8'] .card-div {
+  transform: scale(.8) translate3d(70%, -95%, 0);
+  transition: transform 1s;
+  position: absolute;
+}
+
+[id='8'] { 
+  z-index: -2;
 }
 
 .chat-container {
@@ -214,10 +254,6 @@
 .send-text button {
   margin: 10px;
   transform: translate(1000%,-45px);
-}
-
-.card-container {
-  height: 500px;
 }
 
 #logout-div {
