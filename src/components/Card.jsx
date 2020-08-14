@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
     
@@ -16,8 +17,8 @@ export default class Card extends Component {
             <p>or</p>
         <p>B. {this.props.question.b}</p>
             <div className="card-buttons">
-                <button>A</button>
-                <button>B</button>
+                <Link to="/chat"><button>A</button></Link>
+                <Link to="/chat"><button>B</button></Link>
             </div>
             <button className="next"><p id="skip" onClick={() => this.test()}>skip question  </p>&#8250;</button>
         </div>

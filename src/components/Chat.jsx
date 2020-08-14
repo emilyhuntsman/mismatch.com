@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import ChatBubble from 'react-chat-bubble';
 
 export default class Chat extends Component {
@@ -38,7 +39,7 @@ export default class Chat extends Component {
         <div className="chat-container">
             <div className="chat-header">
                 <p>chat with (username)</p>
-                <a href="/dash"><p>abandon chat</p></a>
+                <Link to="/dash"><p>abandon chat</p></Link>
             </div>
             <div className="message-container">
                 <ChatBubble messages = {this.state.messages} onNewMessage={this.handleNewMessage}/>
