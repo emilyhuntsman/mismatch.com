@@ -42,7 +42,6 @@ export default class Dashboard extends Component {
     }
 
     render() {
-        console.log("cards: ",this.state.cards)
         return (
         <div className="card-container flex-center-row">
             <div id="1" className="card">

@@ -5,8 +5,7 @@ export default class Auth extends Component {
     state = {
         username: "",
         password: "",
-        loginURL: "http://localhost:8000/user/login/",
-        signUpURL: "http://localhost:8000/user/signup/",
+        baseURL: "http://localhost:8000/",
         token: "",
         goHome: false,
     }
@@ -16,7 +15,7 @@ export default class Auth extends Component {
     };
 
     login = () => {
-        fetch(this.state.loginURL, {
+        fetch(this.state.baseURL + "user/login/", {
             method: "POST",
             body: JSON.stringify({
                 username: this.state.username,
@@ -38,12 +37,13 @@ export default class Auth extends Component {
             token: responsejson.token,
             username: "",
             password: "", })
+            localStorage.setItem('token', responsejson.token);
         })
         .catch((error) => console.error({ Error: error }));
     }
 
     signUp = () => {
-        fetch(this.state.signUpURL, {
+        fetch(this.state.baseURL + "user/signup/", {
             method: "POST",
             body: JSON.stringify({
                 username: this.state.username,

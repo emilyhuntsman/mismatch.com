@@ -124,7 +124,7 @@
 .card-container {
   position: relative;
   width: 80%;
-  height: 650px;
+  height: 680px;
 }
 
 #card-container div {
@@ -134,9 +134,11 @@
   background-color: white;
 }
 
+/* note on the following translations: -50% to align cards correctly in the div;
+to account for different scales, -.5/card_scale from midline*/
+
 [id='1'] .card-div {
   transform: scale(.9) translate3d(64.5%, -85%, 0);
-  /* transform: scale(.9) translate3d(120%, -45%, 0); */
   transition: transform 1s; 
   position: absolute;
 }
@@ -147,7 +149,6 @@
 
 [id='2'] .card-div {
   transform: scale(.95) translate3d(12.5%, -52%, 0);
-  /* transform: scale(.95) translate3d(65%, -15%, 0); */
   transition: transform 1s;
   position: absolute;
 }
@@ -158,7 +159,6 @@
 
 [id='3'] .card-div {
   transform: scale(1) translate3d(-50%, -22%, 0);
-  /* transform: scale(1) translate3d(0%, 10%, 0); */
   transition: transform 1s;
   position: absolute;
 }
@@ -169,7 +169,6 @@
 
 [id='4'] .card-div {
   transform: scale(.95) translate3d(-117.5%, -52%, 0);
-  /* transform: scale(.95) translate3d(-65%, -15%, 0); */
   transition: transform 1s;
   position: absolute;
 }
@@ -180,7 +179,6 @@
 
 [id='5'] .card-div {
   transform: scale(.9) translate3d(-175.5%, -85%, 0);
-  /* transform: scale(.9) translate3d(-120%, -45%, 0); */
   transition: transform 1s;
   position: absolute;
 }
@@ -211,7 +209,6 @@
 
 [id='8'] .card-div {
   transform: scale(.8) translate3d(7.5%, -130%, 0);
-  /* transform: scale(.8) translate3d(70%, -95%, 0); */
   transition: transform 1s;
   position: absolute;
 }

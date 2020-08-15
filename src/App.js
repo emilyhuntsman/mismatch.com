@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Auth from "./components/Auth";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
-import Chat from "./components/Chat";
+import Room from "./components/Room";
 
 class App extends Component {
   state = {
@@ -50,7 +50,7 @@ class App extends Component {
             />
             <Route
               exact path="/chat/" render={() => (
-                <Chat />
+                <Room token={this.state.token} username={this.state.username}/>
               )}
             />
           </Switch>
