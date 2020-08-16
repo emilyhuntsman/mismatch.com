@@ -263,3 +263,13 @@ to account for different scales, -.5/card_scale from midline*/
   display: inline-block;
   margin-top: 5px;
 }
+
+#abandon {
+  margin: 0 30px 30px 30px;
+}
+
+.chat-window {
+  background-color: lightgray;
+  padding: 30px;
+  margin: 25px;
+}

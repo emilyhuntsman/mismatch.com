@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
+import { auth } from "../services/firebase";
 
 export default class Auth extends Component {
     state = {
         username: "",
         password: "",
+        email: "",
         baseURL: "http://localhost:8000/",
         token: "",
-        goHome: false,
+        isSign: false,
     }
 
     handleChange = (event) => {
@@ -26,8 +28,11 @@ export default class Auth extends Component {
             },
         })
         .then((res) => {
+            if (!this.state.isSign) {
+                auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            }
             if (res.status !== 401) {
-                this.props.saveLogin(this.state.username,this.state.token);
+                this.props.saveLogin(this.state.username,this.state.email,this.state.token);
                 return res.json()
             }
             throw new Error("invalid login info");
@@ -36,7 +41,9 @@ export default class Auth extends Component {
             this.setState({
             token: responsejson.token,
             username: "",
-            password: "", })
+            password: "",
+            email: "",
+            isSign: false })
             localStorage.setItem('token', responsejson.token);
         })
         .catch((error) => console.error({ Error: error }));
@@ -52,6 +59,10 @@ export default class Auth extends Component {
             headers: {
                 "Content-Type": "application/json",
             },
+        })
+        .then(() => {
+            this.setState({ isSign: true })
+            return (auth().createUserWithEmailAndPassword(this.state.email, this.state.password));
         })
         .then(() => {
             this.login();
@@ -80,6 +91,16 @@ export default class Auth extends Component {
                     value={this.state.username}
                     onChange={this.handleChange}
                     ref={(node) => (this.username = node)}
+                />
+                <br /><br />
+                <label htmlFor="email" className="su">email  </label>
+                <input
+                    type="email"
+                    id="email"
+                    className="su"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    ref={(node) => (this.email = node)}
                 />
                 <br /><br />
                 <label htmlFor="password" className="su">password  </label>
