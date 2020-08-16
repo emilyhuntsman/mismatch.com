@@ -9,6 +9,7 @@ export default class Auth extends Component {
         email: "",
         baseURL: "http://localhost:8000/",
         token: "",
+        isSign: false,
     }
 
     handleChange = (event) => {
@@ -27,7 +28,9 @@ export default class Auth extends Component {
             },
         })
         .then((res) => {
-            auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            if (!this.state.isSign) {
+                auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            }
             if (res.status !== 401) {
                 this.props.saveLogin(this.state.username,this.state.email,this.state.token);
                 return res.json()
@@ -39,7 +42,8 @@ export default class Auth extends Component {
             token: responsejson.token,
             username: "",
             password: "",
-            email: "" })
+            email: "",
+            isSign: false })
             localStorage.setItem('token', responsejson.token);
         })
         .catch((error) => console.error({ Error: error }));
@@ -57,6 +61,7 @@ export default class Auth extends Component {
             },
         })
         .then(() => {
+            this.setState({ isSign: true })
             return (auth().createUserWithEmailAndPassword(this.state.email, this.state.password));
         })
         .then(() => {
@@ -90,7 +95,7 @@ export default class Auth extends Component {
                 <br /><br />
                 <label htmlFor="email" className="su">email  </label>
                 <input
-                    type="text"
+                    type="email"
                     id="email"
                     className="su"
                     value={this.state.email}
