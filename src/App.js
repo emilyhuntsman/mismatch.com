@@ -12,19 +12,25 @@ class App extends Component {
   state = {
     token: "",
     username: "",
+    email: "",
+    authenticated: false,
   };
 
-  saveLogin = (username, token) => {
+  saveLogin = (username, email, token) => {
     this.setState({
       token: token,
-      username: username
+      username: username,
+      email: email,
+      authenticated: true,
     })
   }
 
   resetLogin = () => {
     this.setState({
       token: "",
-      username: ""
+      username: "",
+      email: "",
+      authenticated: false,
     })
   }
 
@@ -50,7 +56,7 @@ class App extends Component {
             />
             <Route
               exact path="/chat/" render={() => (
-                <Room token={this.state.token} username={this.state.username}/>
+                <Room token={this.state.token} username={this.state.username} email={this.state.email}/>
               )}
             />
           </Switch>
