@@ -272,4 +272,5 @@ to account for different scales, -.5/card_scale from midline*/
   background-color: lightgray;
   padding: 30px;
   margin: 25px;
+  width: 70%;
 }

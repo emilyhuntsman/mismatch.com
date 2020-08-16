@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase"
+//import ChatBubble from 'react-chat-bubble';
+import ChatBubble from "./ChatBubble"
 
 export default class Room extends Component {
     state = {
@@ -9,16 +11,26 @@ export default class Room extends Component {
         username: this.props.username,
         chats: [],
         content: '',
+        messages: []
     };
 
     componentDidMount = () => {
         db.ref("chats").on("value", snapshot => {
             let chats = [];
+            let messages = [];
             snapshot.forEach((snap) => {
+                let cont = snap.val()["content"];
+                let author = snap.val()["author"];
+                let message = {};
+                message["image"] = "./johnG.jpg";
+                message["text"] = cont;
+                (author === this.props.username) ? message["type"] = 0 : message["type"] = 1;
                 chats.push(snap.val());
+                messages.push(message);
             });
-            this.setState({ chats });
+            this.setState({ chats, messages });
         });
+
     }
 
     handleChange = (event) => {
@@ -44,12 +56,13 @@ export default class Room extends Component {
             <div id="abandon">
                 <Link to="/dash"><button>abandon chat</button></Link>
             </div>
-            <div class="chat-window">
-                <div className="chats">
+            <div className="chat-window">
+                {/* <div className="chats">
                     {this.state.chats.map(chat => {
                     return <p key={chat.timestamp}>{chat.author}: {chat.content}</p>
                     })}
-                </div>
+                </div> */}
+                <ChatBubble messages = {this.state.messages} />
                 <form onSubmit={this.handleSend}>
                     <input onChange={this.handleChange} value={this.state.content}></input>
                     <button type="submit">Send</button>
