@@ -13,6 +13,7 @@ class App extends Component {
     token: "",
     username: "",
     email: "",
+    topic: "",
     authenticated: false,
   };
 
@@ -34,6 +35,10 @@ class App extends Component {
     })
   }
 
+  setTopic = (roomTopic) => {
+    this.setState({ topic: roomTopic });
+  }
+
   render() {
     return (
       <div className="App flex-center">
@@ -51,12 +56,12 @@ class App extends Component {
             />
             <Route
               exact path="/dash/" render={() => (
-                <Dashboard />
+                <Dashboard setTopic={(topic) => this.setTopic(topic)}/>
               )}
             />
             <Route
               exact path="/chat/" render={() => (
-                <Room token={this.state.token} username={this.state.username} email={this.state.email}/>
+                <Room token={this.state.token} username={this.state.username} email={this.state.email} topic={this.state.topic}/>
               )}
             />
           </Switch>

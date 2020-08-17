@@ -44,6 +44,10 @@
   margin-bottom: 50px;
 }
 
+#email {
+  width: 200px;
+}
+
 .button-div button {
   margin: 5px;
 }
@@ -264,13 +268,36 @@ to account for different scales, -.5/card_scale from midline*/
   margin-top: 5px;
 }
 
-#abandon {
-  margin: 0 30px 30px 30px;
+.chat-window {
+  background-color: #EEF0F1;
+  padding: 30px;
+  margin: 0px 20px 25px 20px;
+  width: 70%;
+  border-radius: 3px;
 }
 
-.chat-window {
+#abandon-header {
+  width: 80%;
   background-color: lightgray;
-  padding: 30px;
-  margin: 25px;
-  width: 70%;
+  border-radius: 3px;
+}
+
+#abandon-header div {
+  width: 50%;
+}
+
+.message-input {
+  width: 300px;
+}
+
+#abandon-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 7px;
+}
+
+#topic-name {
+  display: flex;
+  justify-content: flex-end;
+  transform: translate(10%,0);
 }

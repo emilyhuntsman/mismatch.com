@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase"
-//import ChatBubble from 'react-chat-bubble';
 import ChatBubble from "./ChatBubble"
 
 export default class Room extends Component {
@@ -15,7 +14,7 @@ export default class Room extends Component {
     };
 
     componentDidMount = () => {
-        db.ref("chats").on("value", snapshot => {
+        db.ref(this.props.topic).on("value", snapshot => {
             let chats = [];
             let messages = [];
             snapshot.forEach((snap) => {
@@ -24,6 +23,7 @@ export default class Room extends Component {
                 let message = {};
                 message["image"] = "./johnG.jpg";
                 message["text"] = cont;
+                message["author"] = author;
                 (author === this.props.username) ? message["type"] = 0 : message["type"] = 1;
                 chats.push(snap.val());
                 messages.push(message);
@@ -41,7 +41,7 @@ export default class Room extends Component {
 
     handleSend = async (event) => {
         event.preventDefault();
-        await db.ref("chats").push({
+        await db.ref(this.props.topic).push({
             content: this.state.content,
             author: this.state.username,
             timestamp: Date.now(),
@@ -50,21 +50,32 @@ export default class Room extends Component {
         this.setState({ content: '' })
     }
 
+    removeData = () => {
+        db.ref(this.props.topic).remove();
+    }
+
+    doRedirect = () => {
+        if (this.props.topic === "") {
+        return <Redirect to="/"/>
+        }
+    }
+
     render() {
         return (
-        <div>
-            <div id="abandon">
-                <Link to="/dash"><button>abandon chat</button></Link>
+        <div className="flex-center">
+            {this.doRedirect()}
+            <div id="abandon-header" className="flex-center-row">
+                <div id="topic-name">
+                    <h3>{this.props.topic}</h3>
+                </div>
+                <div id="abandon-button">
+                    <Link to="/dash" onClick={() => this.removeData()}><button>abandon chat</button></Link>
+                </div>
             </div>
-            <div className="chat-window">
-                {/* <div className="chats">
-                    {this.state.chats.map(chat => {
-                    return <p key={chat.timestamp}>{chat.author}: {chat.content}</p>
-                    })}
-                </div> */}
+            <div className="chat-window flex-center">
                 <ChatBubble messages = {this.state.messages} />
                 <form onSubmit={this.handleSend}>
-                    <input onChange={this.handleChange} value={this.state.content}></input>
+                    <input className="message-input"onChange={this.handleChange} value={this.state.content}></input>
                     <button type="submit">Send</button>
                 </form>
             </div>

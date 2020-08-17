@@ -5,9 +5,6 @@ import PropTypes from 'prop-types'
 import './ChatBubble.css';
 
 class ChatBubble extends Component {
-    state = {
-        newMessage: '',
-    }
 
     getConversations(messages){
         if(messages === undefined){
@@ -24,7 +21,7 @@ class ChatBubble extends Component {
         }
         return (
                 <div className={`bubble-container ${bubbleDirection}`} key={index}>
-                    <img className={`img-circle`} src={message.image} alt=""/>
+                    <p>{message.author}</p>
                     <div className={`bubble ${bubbleClass}`}>{message.text}</div>
                 </div>
             );
@@ -32,26 +29,8 @@ class ChatBubble extends Component {
         return listItems;
     }
 
-    handleSubmit = e => {
-        e.preventDefault()
-
-        const {props: {onNewMessage}, state: {newMessage}} = this
-
-        if(onNewMessage && newMessage) {
-        onNewMessage(newMessage)
-        }
-
-        this.setState({
-        newMessage: '',
-        })
-    }
-
-    handleInputChange = e => this.setState({
-        newMessage: e.target.value,
-    })
-
     render() {
-        const {props: {messages}, state: {newMessage}} = this;
+        const {props: {messages}} = this;
         const chatList = this.getConversations(messages);
 
         return (
@@ -59,17 +38,6 @@ class ChatBubble extends Component {
             <div className="chat-list">
             {chatList}
             </div>
-            {/* <form
-            className="new-message"
-            onSubmit={this.handleSubmit}
-            > */}
-            {/* <input
-                value={newMessage}
-                placeholder="Write a new message"
-                onChange={this.handleInputChange}
-                className="new-message-input"
-            /> */}
-            {/* </form> */}
         </div>
         );
     }
@@ -77,7 +45,6 @@ class ChatBubble extends Component {
 
     ChatBubble.propTypes = {
     messages: PropTypes.array.isRequired,
-    onNewMessage: PropTypes.func.isRequired,
 };
 
 export default ChatBubble;

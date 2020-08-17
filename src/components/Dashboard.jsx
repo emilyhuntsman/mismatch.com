@@ -35,28 +35,28 @@ export default class Dashboard extends Component {
             {(this.state.cards) ?
             <>
                 <div id="1" className="card">
-                    <Card question={this.state.cards[0]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[0]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="2" className="card">
-                    <Card question={this.state.cards[1]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[1]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="3" className="card">
-                    <Card question={this.state.cards[2]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[2]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="4" className="card">
-                    <Card question={this.state.cards[3]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[3]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="5" className="card">
-                    <Card question={this.state.cards[4]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[4]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="6" className="card">
-                    <Card question={this.state.cards[5]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[5]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="7" className="card">
-                    <Card question={this.state.cards[6]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[6]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
                 <div id="8" className="card">
-                    <Card question={this.state.cards[7]} handleNext={() => this.handleNext()} />
+                    <Card question={this.state.cards[7]} handleNext={() => this.handleNext()} setTopic={(topic) => this.props.setTopic(topic)} />
                 </div>
             </>
             : "" }

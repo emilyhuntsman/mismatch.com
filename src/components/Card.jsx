@@ -5,7 +5,7 @@ export default class Card extends Component {
     
     state = {}
 
-    test = () => {
+    next = () => {
         this.props.handleNext();
         this.setState({})
     }
@@ -17,10 +17,10 @@ export default class Card extends Component {
             <p>or</p>
         <p>B. {this.props.question.b}</p>
             <div className="card-buttons">
-                <Link to="/chat"><button>A</button></Link>
-                <Link to="/chat"><button>B</button></Link>
+                <Link to="/chat" onClick={() => this.props.setTopic(this.props.question.topic)}><button>A</button></Link>
+                <Link to="/chat" onClick={() => this.props.setTopic(this.props.question.topic)}><button>B</button></Link>
             </div>
-            <button className="next"><p id="skip" onClick={() => this.test()}>skip question  </p>&#8250;</button>
+            <button className="next"><p id="skip" onClick={() => this.next()}>skip question  </p>&#8250;</button>
         </div>
         );
     }

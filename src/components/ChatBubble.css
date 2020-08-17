@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+.bubble-container p {
+    margin: 0px 8px 0px 8px;
+}
+
 .bubble-direction-reverse {
 flex-direction: row-reverse;
 }
@@ -72,7 +76,8 @@ width:42px;
 
 .chats {
 position: relative;
-height: 100%;
+height: 320px;
+width: 500px;
 }
 
 .chat-list {
