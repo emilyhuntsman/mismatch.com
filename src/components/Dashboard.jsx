@@ -9,9 +9,9 @@ export default class Dashboard extends Component {
 
     getCards = () => {
         if (process.env.NODE_ENV === 'development') {
-            cardURL = "http://localhost:8000/cards/"
+            const cardURL = "http://localhost:8000/cards/"
         } else {
-            cardURL = "https://mismatch-api.herokuapp.com/cards/"
+            const cardURL = "https://mismatch-api.herokuapp.com/cards/"
         }
         fetch(cardURL)
         .then(response => {

@@ -18,9 +18,9 @@ export default class Auth extends Component {
 
     login = () => {
         if (process.env.NODE_ENV === 'development') {
-            baseURL = "http://localhost:8000/"
+            let baseURL = "http://localhost:8000/"
         } else {
-            baseURL = "https://mismatch-api.herokuapp.com/"
+            let baseURL = "https://mismatch-api.herokuapp.com/"
         }
         fetch(baseURL + "user/login/", {
             method: "POST",
