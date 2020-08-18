@@ -62,12 +62,17 @@ export default class Room extends Component {
         this.setState({ content: '' })
     }
 
+    handleLogout = () => {
+        this.props.resetLogin();
+        this.removeData();
+    }
+
     removeData = () => {
         db.ref(this.props.topic).remove();
     }
 
     doRedirect = () => {
-        if (this.props.topic === "" || this.props.user === "") {
+        if (this.props.topic === "" || this.props.user === "" || this.props.username === "") {
             return <Redirect to="/"/>
         }
     }
@@ -91,6 +96,10 @@ export default class Room extends Component {
                     <button type="submit">Send</button>
                 </form>
             </div>
+            { this.props.username !== "" &&
+                <div id="logout-div">
+                    <button onClick={() => this.handleLogout()}>log out</button>
+                </div> }
         </div>
         );
     }

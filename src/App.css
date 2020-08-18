@@ -282,10 +282,6 @@ to account for different scales, -.5/card_scale from midline*/
   border-radius: 3px;
 }
 
-#abandon-header div {
-  width: 50%;
-}
-
 .message-input {
   width: 300px;
 }
@@ -294,10 +290,11 @@ to account for different scales, -.5/card_scale from midline*/
   display: flex;
   justify-content: flex-end;
   margin-right: 7px;
+  width: 30%;
 }
 
 #topic-name {
   display: flex;
   justify-content: flex-end;
-  transform: translate(10%,0);
+  width: 70%;
 }

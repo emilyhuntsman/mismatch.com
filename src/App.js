@@ -48,7 +48,7 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" render={() => (
-              <Auth saveLogin={(username,token) => this.saveLogin(username,token)}/>
+              <Auth saveLogin={(username,email,token) => this.saveLogin(username,email,token)}/>
             )}
             />
             <Route
@@ -58,16 +58,16 @@ class App extends Component {
             />
             <Route
               exact path="/dash/" render={() => (
-                <Dashboard setTopic={(topic,q,a) => this.setTopic(topic,q,a)}/>
+                <Dashboard setTopic={(topic,q,a) => this.setTopic(topic,q,a)} authenticated={this.state.authenticated} resetLogin={this.resetLogin}/>
               )}
             />
             <Route
               exact path="/chat/" render={() => (
-                <Room token={this.state.token} username={this.state.username} email={this.state.email} topic={this.state.topic} question={this.state.question} answer={this.state.answer}/>
+                <Room username={this.state.username} email={this.state.email} topic={this.state.topic} question={this.state.question} answer={this.state.answer} resetLogin={this.resetLogin}/>
               )}
             />
           </Switch>
-          <Footer username={this.state.username} resetLogin={this.resetLogin}/>
+          <Footer />
         </BrowserRouter>
       </div>
     );
