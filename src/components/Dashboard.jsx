@@ -4,12 +4,16 @@ import Card from "./Card"
 export default class Dashboard extends Component {
 
     state = {
-        cardURL: "http://localhost:8000/cards/",
         cards: null
     }
 
     getCards = () => {
-        fetch(this.state.cardURL)
+        if (process.env.NODE_ENV === 'development') {
+            cardURL = "http://localhost:8000/cards/"
+        } else {
+            cardURL = "https://mismatch-api.herokuapp.com/cards/"
+        }
+        fetch(cardURL)
         .then(response => {
             return response.json()
         }).then(json => this.setState({

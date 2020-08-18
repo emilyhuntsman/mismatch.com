@@ -17,7 +17,12 @@ export default class Auth extends Component {
     };
 
     login = () => {
-        fetch(this.state.baseURL + "user/login/", {
+        if (process.env.NODE_ENV === 'development') {
+            baseURL = "http://localhost:8000/"
+        } else {
+            baseURL = "https://mismatch-api.herokuapp.com/"
+        }
+        fetch(baseURL + "user/login/", {
             method: "POST",
             body: JSON.stringify({
                 username: this.state.username,
@@ -50,7 +55,12 @@ export default class Auth extends Component {
     }
 
     signUp = () => {
-        fetch(this.state.baseURL + "user/signup/", {
+        if (process.env.NODE_ENV === 'development') {
+            baseURL = "http://localhost:8000/"
+        } else {
+            baseURL = "https://mismatch-api.herokuapp.com/"
+        }
+        fetch(baseURL + "user/signup/", {
             method: "POST",
             body: JSON.stringify({
                 username: this.state.username,
