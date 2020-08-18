@@ -14,6 +14,8 @@ class App extends Component {
     username: "",
     email: "",
     topic: "",
+    question: "",
+    answer: "",
     authenticated: false,
   };
 
@@ -35,8 +37,8 @@ class App extends Component {
     })
   }
 
-  setTopic = (roomTopic) => {
-    this.setState({ topic: roomTopic });
+  setTopic = (roomTopic,q,a) => {
+    this.setState({ topic: roomTopic, question: q, answer: a});
   }
 
   render() {
@@ -56,12 +58,12 @@ class App extends Component {
             />
             <Route
               exact path="/dash/" render={() => (
-                <Dashboard setTopic={(topic) => this.setTopic(topic)}/>
+                <Dashboard setTopic={(topic,q,a) => this.setTopic(topic,q,a)}/>
               )}
             />
             <Route
               exact path="/chat/" render={() => (
-                <Room token={this.state.token} username={this.state.username} email={this.state.email} topic={this.state.topic}/>
+                <Room token={this.state.token} username={this.state.username} email={this.state.email} topic={this.state.topic} question={this.state.question} answer={this.state.answer}/>
               )}
             />
           </Switch>

@@ -10,27 +10,39 @@ export default class Room extends Component {
         username: this.props.username,
         chats: [],
         content: '',
-        messages: []
+        messages: [],
+        sent: [],
     };
 
-    componentDidMount = () => {
-        db.ref(this.props.topic).on("value", snapshot => {
-            let chats = [];
-            let messages = [];
-            snapshot.forEach((snap) => {
-                let cont = snap.val()["content"];
-                let author = snap.val()["author"];
-                let message = {};
-                message["image"] = "./johnG.jpg";
-                message["text"] = cont;
-                message["author"] = author;
-                (author === this.props.username) ? message["type"] = 0 : message["type"] = 1;
-                chats.push(snap.val());
-                messages.push(message);
+    componentDidMount = async () => {
+        if (this.props.topic !== "") {
+            if (this.state.sent.length === 0) {
+                await db.ref(this.props.topic).push({
+                    content: this.props.answer,
+                    author: this.props.username,
+                    timestamp: Date.now(),
+                    uid: this.state.user.uid
+                });
+                let updated = this.state.sent.concat(this.props.answer);
+                this.setState({ sent : updated });
+            }
+            await db.ref(this.props.topic).on("value", snapshot => {
+                let messages = [];
+                snapshot.forEach((snap) => {
+                    let cont = snap.val()["content"];
+                    let author = snap.val()["author"];
+                    let message = {};
+                    message["text"] = cont;
+                    message["author"] = author;
+                    (author === this.props.username) ? message["type"] = 0 : message["type"] = 1;
+                    messages.push(message);
+                });
+                if (!snapshot.hasChildren()) {
+                    this.setState({ sent : [] });
+                }
+                this.setState({ messages});
             });
-            this.setState({ chats, messages });
-        });
-
+        }
     }
 
     handleChange = (event) => {
@@ -55,8 +67,8 @@ export default class Room extends Component {
     }
 
     doRedirect = () => {
-        if (this.props.topic === "") {
-        return <Redirect to="/"/>
+        if (this.props.topic === "" || this.props.user === "") {
+            return <Redirect to="/"/>
         }
     }
 
@@ -66,7 +78,7 @@ export default class Room extends Component {
             {this.doRedirect()}
             <div id="abandon-header" className="flex-center-row">
                 <div id="topic-name">
-                    <h3>{this.props.topic}</h3>
+                    <h3>{this.props.question}...</h3>
                 </div>
                 <div id="abandon-button">
                     <Link to="/dash" onClick={() => this.removeData()}><button>abandon chat</button></Link>

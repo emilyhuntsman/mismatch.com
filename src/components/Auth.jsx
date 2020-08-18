@@ -7,7 +7,6 @@ export default class Auth extends Component {
         username: "",
         password: "",
         email: "",
-        baseURL: "http://localhost:8000/",
         token: "",
         isSign: false,
     }

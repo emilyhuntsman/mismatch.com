@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
-    
-    state = {}
 
     next = () => {
         this.props.handleNext();
@@ -17,8 +15,8 @@ export default class Card extends Component {
             <p>or</p>
         <p>B. {this.props.question.b}</p>
             <div className="card-buttons">
-                <Link to="/chat" onClick={() => this.props.setTopic(this.props.question.topic)}><button>A</button></Link>
-                <Link to="/chat" onClick={() => this.props.setTopic(this.props.question.topic)}><button>B</button></Link>
+                <Link to="/chat" onClick={() => this.props.setTopic(this.props.question.topic,this.props.question.q,this.props.question.a)}><button>A</button></Link>
+                <Link to="/chat" onClick={() => this.props.setTopic(this.props.question.topic,this.props.question.q,this.props.question.b)}><button>B</button></Link>
             </div>
             <button className="next"><p id="skip" onClick={() => this.next()}>skip question  </p>&#8250;</button>
         </div>
