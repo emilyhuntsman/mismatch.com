@@ -298,3 +298,46 @@ to account for different scales, -.5/card_scale from midline*/
   justify-content: flex-end;
   width: 70%;
 }
+
+/* for phone screens */
+@media only screen and (max-device-width: 480px) {
+  .logo {
+    width: 300px;
+  }
+
+  .card-div {
+    width: 80%;
+  }
+
+  [id='1'] .card-div {
+    transform: scale(.7) translate3d(64.5%, -85%, 0);
+  }
+  
+  [id='2'] .card-div {
+    transform: scale(.75) translate3d(12.5%, -52%, 0);
+  }
+  
+  [id='3'] .card-div {
+    transform: scale(.8) translate3d(-50%, -22%, 0);
+  }
+  
+  [id='4'] .card-div {
+    transform: scale(.75) translate3d(-117.5%, -52%, 0);
+  }
+
+  [id='5'] .card-div {
+    transform: scale(.7) translate3d(-175.5%, -85%, 0);
+  }
+  
+  [id='6'] .card-div {
+    transform: scale(.6) translate3d(-132.5%, -130%, 0);
+  }
+
+  [id='7'] .card-div {
+    transform: scale(.6) translate3d(-62.5%, -147%, 0);
+  }
+  
+  [id='8'] .card-div {
+    transform: scale(.6) translate3d(7.5%, -130%, 0);
+  }
+}
