@@ -6,7 +6,7 @@ In thinking about this project, I decided to try building something unlike anyth
 
 ## Approach
 I began the process of building mismatch.com by breaking it down into individual pages and react components, creating the wireframe below:
-![mismatch](./public/mismatch.pdf)
+![mismatch](mismatch.pdf)
 
 I built the entire frontend before generating the Django backend with authentication and built out the Firebase chat last.
 
