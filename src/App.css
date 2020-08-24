@@ -82,7 +82,7 @@
   text-decoration: none;
 }
 
-.footer-menu p {
+.footer-menu p, .footer-menu a {
   color: darkgray;
   margin: 20px;
 }
