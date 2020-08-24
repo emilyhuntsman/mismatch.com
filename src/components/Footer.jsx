@@ -12,7 +12,7 @@ export default class Footer extends Component {
                     <p>|</p>
                     <Link to="/about/"><p>about</p></Link>
                     <p>|</p>
-                    <Link to="https://github.com/root2point0/mismatch.com"><p>code</p></Link>
+                    <a href="https://github.com/root2point0/mismatch.com">code</a>
                 </div>
             </footer>
         </>
